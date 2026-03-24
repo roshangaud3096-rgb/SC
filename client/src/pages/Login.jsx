@@ -48,9 +48,8 @@ const Login = ({getUser}) => {
       }
 
     }catch(error){
-
-      toast.error("Something went wrong.")
-      console.log(error)
+      console.error("Login error:", error)
+      toast.error(error.message || "Failed to connect to server. Check your network and VITE_SERVER_URL.")
     }finally{
       
       setLoading(false)
