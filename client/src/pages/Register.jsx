@@ -38,6 +38,10 @@ const Register = () => {
         body: JSON.stringify(formData)
       })
 
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Server returned error (${res.status}): ${errorText || res.statusText}`);
+      }
       const data = await res.json()
 
       if (data.success) {
