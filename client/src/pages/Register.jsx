@@ -49,8 +49,11 @@ const Register = () => {
       }
 
     } catch (error) {
-      toast.error("Something went wrong.")
-      console.log(error)
+      console.error("Signup error:", error)
+      toast.error(error.message || "Failed to connect to server. Check your network and VITE_SERVER_URL.")
+      if (error.name === 'TypeError' && error.message.includes('fetch')) {
+        toast.error("Tip: Ensure your server port 3000 is 'Public' in Codespaces.")
+      }
     } finally {
       setLoading(false)
     }
