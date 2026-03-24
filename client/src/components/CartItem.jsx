@@ -25,8 +25,8 @@ const CartItem = ({ item }) => {
             }
 
         } catch (error) {
-            toast.error("Something went wrong.")
-            console.log(error)
+            console.error("Remove from cart error:", error)
+            toast.error(error.message || "Failed to connect to server.")
         }
     }
     const handleIncrement = async () => {
@@ -47,8 +47,8 @@ const CartItem = ({ item }) => {
             }
 
         } catch (error) {
-            toast.error("Something went wrong.")
-            console.log(error)
+            console.error("Increment quantity error:", error)
+            toast.error(error.message || "Failed to connect to server.")
         }
     }
     const handleDecrement = async () => {
@@ -69,8 +69,8 @@ const CartItem = ({ item }) => {
             }
 
         } catch (error) {
-            toast.error("Something went wrong.")
-            console.log(error)
+            console.error("Decrement quantity error:", error)
+            toast.error(error.message || "Failed to connect to server.")
         }
     }
     console.log(item)
