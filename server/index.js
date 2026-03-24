@@ -17,7 +17,14 @@ app.use(express.json())
 // }))
 
 app.use(cors({
-    origin: ["http://localhost:5173", "http://localhost:5175"],
+    origin: (origin, callback) => {
+        const allowedOrigins = ["http://localhost:5173", "http://localhost:5175"];
+        if (!origin || allowedOrigins.includes(origin) || origin.endsWith(".app.github.dev")) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true
 }));
 app.use(cookieParser())
